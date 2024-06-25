@@ -11,16 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 } */
-
-.boardDrop.close {
-  max-height: 0;
-  transition: max-height ease-in 1500ms;
-}
-
-.boardDrop.open {
-  max-height: 3rem;
-  transition: max-height ease-out 500ms;
-}
+// body::-webkit-scrollbar {
+//   width: 1rem;
+// }
 
 @tailwind base;
 @tailwind components;

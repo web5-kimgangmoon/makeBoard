@@ -1,5 +1,5 @@
 import { FC } from "react";
-import BoardList from "./boardList";
+import BoardList from "./boradList/boardList";
 
 export interface IProps {
   test: boolean;
@@ -9,7 +9,7 @@ export interface IProps {
 const Body: FC<IProps> = ({ test, toggleTest }) => {
   return (
     <div className="py-3" id="body">
-      <div className="container max-[640px]:p-0 h-[30rem]">
+      <div className="container max-sm:p-0 min-w-[450px]">
         <BoardList test={test} toggleTest={toggleTest} />
       </div>
     </div>

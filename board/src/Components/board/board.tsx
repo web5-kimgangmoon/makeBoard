@@ -10,7 +10,10 @@ export interface IProps {
 
 const Board: FC<IProps> = ({ test, toggleTest }) => {
   return (
-    <div className="bg-gray-200 font-sans text-blue-700 min-h-[100vh]">
+    <div
+      className="bg-gray-200 min-h-[100vh] font-sans text-blue-700 pr-4"
+      id="board"
+    >
       <Header />
       <Body test={test} toggleTest={toggleTest} />
       <footer className="" id="footer"></footer>
