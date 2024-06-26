@@ -1,22 +1,18 @@
-import { FC } from "react";
+import { FC, MouseEvent } from "react";
+import {
+  IBoardItemContentExt as IContentExt,
+  IBoardItemBase as IBase,
+} from "../../../hooks/board/boardList";
 
-export interface IProps {
-  isWriter: boolean;
-  isUser: boolean;
-  title: string;
-  writer: string;
-  createdAt: string;
-  updatedAt: string;
-  looks: number;
-  content: string;
-  likes: number;
-  unlikes: number;
-  deleteItem(): void;
+export interface IProps extends IBase {}
+export interface IProps extends IContentExt {
+  clickDeleteItem(e: MouseEvent<HTMLButtonElement>): void;
   //   checkScroll(): void;
   //   getBoardContent():void; 이것들을 포함하고 있어야한다.
-  openCommentListModal(): void;
-  openCommentWriteModal(): void;
-  recommend(like: number): void;
+  openCommentListModal(e: MouseEvent<HTMLButtonElement>): void;
+  openCommentWriteModal(e: MouseEvent<HTMLButtonElement>): void;
+  clickLike(e: MouseEvent<HTMLButtonElement>): void;
+  clickUnLike(e: MouseEvent<HTMLButtonElement>): void;
 }
 
 const ItemContent: FC<IProps> = ({
@@ -30,10 +26,11 @@ const ItemContent: FC<IProps> = ({
   content,
   likes,
   unlikes,
-  deleteItem,
+  clickDeleteItem,
   openCommentListModal,
   openCommentWriteModal,
-  recommend,
+  clickLike,
+  clickUnLike,
 }) => {
   return (
     <div className="relative z-10">
@@ -53,7 +50,7 @@ hover:bg-green-300 focus:bg-green-500 focus:text-green-800 transition-[backgroun
                 type="button"
                 className="px-2 py-1 bg-red-200 rounded-md shadow-md font-semibold text-red-700
 hover:bg-red-300 focus:bg-red-500 focus:text-red-800 transition-[background]"
-                onClick={deleteItem}
+                onClick={clickDeleteItem}
               >
                 삭제
               </button>
@@ -91,7 +88,7 @@ hover:bg-red-300 focus:bg-red-500 focus:text-red-800 transition-[background]"
                 type="button"
                 className="px-2 py-1 bg-blue-200 rounded-md shadow-md font-semibold text-blue-700
 hover:bg-blue-300 focus:bg-blue-500 focus:text-blue-800 transition-[background]"
-                onClick={() => recommend(1)}
+                onClick={clickLike}
               >
                 추천 <span>{likes}</span>
               </button>
@@ -99,7 +96,7 @@ hover:bg-blue-300 focus:bg-blue-500 focus:text-blue-800 transition-[background]"
                 type="button"
                 className="px-2 py-1 bg-red-200 rounded-md shadow-md font-semibold text-red-700
 hover:bg-red-300 focus:bg-red-500 focus:text-red-800 transition-[background]"
-                onClick={() => recommend(-1)}
+                onClick={clickUnLike}
               >
                 비추천 <span>{unlikes}</span>
               </button>

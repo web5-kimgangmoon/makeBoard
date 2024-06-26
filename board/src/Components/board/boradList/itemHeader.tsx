@@ -1,16 +1,10 @@
 import { FC } from "react";
+import { IBoardItemHeader as IHeader } from "../../../hooks/board/boardList";
 
-export interface IProps {
-  writer: string;
-  title: string;
-  createdAt: string;
-  likes: number;
-  unlikes: number;
-  commentCnt: number;
-  looks: number;
-}
+export interface IProps extends IHeader {}
 
 const ItemHeader: FC<IProps> = ({
+  id,
   writer,
   title,
   createdAt,

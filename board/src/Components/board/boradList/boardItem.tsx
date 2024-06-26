@@ -1,17 +1,30 @@
 import { FC, MouseEvent } from "react";
-import ItemHeader from "./itemHeader";
-import ItemContentBox from "./itemContentBox";
+import ItemHeader from "../../../Containers/board/boardList/itemHeader";
+import ItemContentBox from "../../../Containers/board/boardList/itemContentBox";
+import {
+  IBoardItem,
+  IBoardItemContentExt,
+} from "../../../hooks/board/boardList";
 
 export interface IProps {
-  test: boolean;
-  toggleTest(): void;
+  boardItem: IBoardItem;
+  setBoardItemContent(itemContent: IBoardItemContentExt): void;
+  toggleBoardItemContent(): void;
 }
 
-const BoardItem: FC<IProps> = ({ test, toggleTest }) => {
+const BoardItem: FC<IProps> = ({
+  boardItem,
+  setBoardItemContent,
+  toggleBoardItemContent,
+}) => {
   return (
     <li className="bg-blue-300 shadow-sm overflow-y-hidden relative">
-      <ItemHeader />
-      <ItemContentBox />
+      <ItemHeader item={boardItem.getBoardItemHeader()} />
+      <ItemContentBox
+        boardItemContent={boardItem.getBoardItemContent()}
+        setBoardItemContent={setBoardItemContent}
+        toggleBoardItemContent={toggleBoardItemContent}
+      />
     </li>
   );
 };

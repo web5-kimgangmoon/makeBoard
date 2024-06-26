@@ -1,12 +1,21 @@
 import { FC } from "react";
 import BoardItem from "./boardItem";
+import {
+  IBoardItem,
+  IBoardItemContentExt,
+} from "../../../hooks/board/boardList";
 
 export interface IProps {
-  test: boolean;
-  toggleTest(): void;
+  setBoardItemContent(id: number, itemContent: IBoardItemContentExt): void;
+  toggleBoardItemContent(id: number): void;
+  getBoardItemList(): IBoardItem[];
 }
 
-const BoardList: FC<IProps> = ({ test, toggleTest }) => {
+const BoardList: FC<IProps> = ({
+  getBoardItemList,
+  setBoardItemContent,
+  toggleBoardItemContent,
+}) => {
   return (
     <ol className="py-1 bg-blue-400 h-full rounded-sm flex flex-col gap-y-1">
       <li className="bg-blue-100 shadow-sm overflow-y-hidden">
@@ -29,8 +38,16 @@ const BoardList: FC<IProps> = ({ test, toggleTest }) => {
           </div>
         </div>
       </li>
-      <BoardItem test={test} toggleTest={toggleTest} />
-      <BoardItem test={test} toggleTest={toggleTest} />
+      {getBoardItemList().map((item) => (
+        <BoardItem
+          key={item.id}
+          boardItem={item}
+          setBoardItemContent={(itemContent: IBoardItemContentExt) =>
+            setBoardItemContent(item.id, itemContent)
+          }
+          toggleBoardItemContent={() => toggleBoardItemContent(item.id)}
+        />
+      ))}
     </ol>
   );
 };
