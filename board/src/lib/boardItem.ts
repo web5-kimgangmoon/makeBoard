@@ -20,7 +20,7 @@ export interface IBoardItemContent extends IBoardBase {
   getContent(): string;
 }
 
-class BoardItemCls implements IBoardItemHeader, IBoardItemContent {
+class BoardItemCls implements IBoardBase {
   private id: number;
   private title: string;
   private writer: string;
@@ -28,12 +28,12 @@ class BoardItemCls implements IBoardItemHeader, IBoardItemContent {
   private likes: number;
   private unlikes: number;
   private looks: number;
-  private commentCnt: number;
-  private isWriter: boolean;
-  private isUser: boolean;
-  private isOpen: boolean;
-  private updatedAt: string;
-  private content: string;
+
+  // private isWriter: boolean;
+  // private isUser: boolean;
+  // private isOpen: boolean;
+  // private updatedAt: string;
+  // private content: string;
 
   constructor(boardObj: {
     id: number;
@@ -43,12 +43,12 @@ class BoardItemCls implements IBoardItemHeader, IBoardItemContent {
     likes: number;
     unlikes: number;
     looks: number;
-    commentCnt: number;
-    isWriter: boolean;
-    isUser: boolean;
-    isOpen?: boolean;
-    updatedAt: string;
-    content: string;
+    // commentCnt: number;
+    // isWriter: boolean;
+    // isUser: boolean;
+    // isOpen?: boolean;
+    // updatedAt: string;
+    // content: string;
   }) {
     this.id = boardObj.id;
     this.title = boardObj.title;
@@ -57,12 +57,11 @@ class BoardItemCls implements IBoardItemHeader, IBoardItemContent {
     this.likes = boardObj.likes;
     this.unlikes = boardObj.unlikes;
     this.looks = boardObj.looks;
-    this.commentCnt = boardObj.commentCnt;
-    this.isWriter = boardObj.isWriter;
-    this.isUser = boardObj.isUser;
-    this.isOpen = boardObj.isOpen ? true : false;
-    this.updatedAt = boardObj.updatedAt;
-    this.content = boardObj.content;
+    // this.isWriter = boardObj.isWriter;
+    // this.isUser = boardObj.isUser;
+    // this.isOpen = boardObj.isOpen ? true : false;
+    // this.updatedAt = boardObj.updatedAt;
+    // this.content = boardObj.content;
   }
   getId() {
     return this.id;
@@ -85,8 +84,90 @@ class BoardItemCls implements IBoardItemHeader, IBoardItemContent {
   getLooks() {
     return this.looks;
   }
-  getCommentCnt() {
+  // getIsWriter() {
+  //   return this.isWriter;
+  // }
+  // getIsUser() {
+  //   return this.isUser;
+  // }
+  // getIsOpen() {
+  //   return this.isOpen;
+  // }
+  // getUpdatedAt() {
+  //   return this.updatedAt;
+  // }
+  // getContent() {
+  //   return this.content;
+  // }
+}
+
+export class BoardItemHeaderCls
+  extends BoardItemCls
+  implements IBoardItemHeader
+{
+  private commentCnt: number;
+  constructor(boardObj: {
+    id: number;
+    title: string;
+    writer: string;
+    createdAt: string;
+    likes: number;
+    unlikes: number;
+    looks: number;
+    commentCnt: number;
+  }) {
+    super({
+      id: boardObj.id,
+      title: boardObj.title,
+      writer: boardObj.writer,
+      createdAt: boardObj.createdAt,
+      likes: boardObj.likes,
+      unlikes: boardObj.unlikes,
+      looks: boardObj.looks,
+    });
+    this.commentCnt = boardObj.commentCnt;
+  }
+  getCommentCnt(): number {
     return this.commentCnt;
+  }
+}
+export class BoardItemContentCls
+  extends BoardItemCls
+  implements IBoardItemContent
+{
+  private isWriter: boolean;
+  private isUser: boolean;
+  private isOpen: boolean;
+  private updatedAt: string;
+  private content: string;
+  constructor(boardObj: {
+    id: number;
+    title: string;
+    writer: string;
+    createdAt: string;
+    likes: number;
+    unlikes: number;
+    looks: number;
+    isWriter: boolean;
+    isUser: boolean;
+    isOpen?: boolean;
+    updatedAt: string;
+    content: string;
+  }) {
+    super({
+      id: boardObj.id,
+      title: boardObj.title,
+      writer: boardObj.writer,
+      createdAt: boardObj.createdAt,
+      likes: boardObj.likes,
+      unlikes: boardObj.unlikes,
+      looks: boardObj.looks,
+    });
+    this.isWriter = boardObj.isWriter;
+    this.isUser = boardObj.isUser;
+    this.isOpen = boardObj.isOpen ? true : false;
+    this.updatedAt = boardObj.updatedAt;
+    this.content = boardObj.content;
   }
   getIsWriter() {
     return this.isWriter;

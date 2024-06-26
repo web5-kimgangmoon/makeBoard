@@ -26,12 +26,6 @@ const Board: FC<IProps> = ({}) => {
       }),
     ],
   });
-  const toggleTest = () => {
-    setState((state) => {
-      state.test = !state.test;
-      return { ...state };
-    });
-  };
   return <BoardComp test={state.test} toggleTest={toggleTest} />;
 };
 
