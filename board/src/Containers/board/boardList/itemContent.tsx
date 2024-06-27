@@ -1,19 +1,40 @@
 import { FC, MouseEvent } from "react";
-import ItemContentComp from "../../../Components/board/boradList/itemContent";
-import { IBoardItemContent as IContent } from "../../../hooks/board/boardList";
+import ItemContentComp from "../../../Components/Board/BoardList/ItemContent";
+import { IBoardItemContent as IContent } from "../../../hooks/Board/boardList";
+import useBoardItemUserInfo from "../../../hooks/Board/boardItemUserInfo";
+import getUserInfo from "../../../getInfo/getBoardItemUserInfo";
 
 export interface IProps {
   item: IContent;
+  isLong: boolean;
+  isUnFold: boolean;
   unFoldBoardItem: () => void;
+  selectLike(like: number): void;
+  deleteBoard(): void;
 }
 
-const ItemContent: FC<IProps> = ({ item, unFoldBoardItem }) => {
+const ItemContent: FC<IProps> = ({
+  item,
+  isUnFold,
+  isLong,
+  unFoldBoardItem,
+  selectLike,
+  deleteBoard,
+}) => {
+  const { setIsAlreadyLike, getBoardItemUserInfo } = useBoardItemUserInfo(
+    getUserInfo()
+  );
+  const userInfo = getBoardItemUserInfo();
   const clickUnfold = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     unFoldBoardItem();
   };
   const clickDeleteItem = (e: MouseEvent<HTMLButtonElement>) => {
-    console.log("삭제 체크");
+    if (userInfo.isWriter) {
+      deleteBoard();
+      console.log("삭제 체크");
+    }
+    // 삭제 요청을 서버로 보내자
   };
   const openCommentListModal = (e: MouseEvent<HTMLButtonElement>) => {
     console.log("댓글 리스트 모달 체크");
@@ -22,17 +43,29 @@ const ItemContent: FC<IProps> = ({ item, unFoldBoardItem }) => {
     console.log("댓글 작성 모달 체크");
   };
   const clickLike = (e: MouseEvent<HTMLButtonElement>) => {
-    console.log("추천 체크");
+    if (!userInfo.isAlreadyLike) {
+      selectLike(1);
+      setIsAlreadyLike();
+      console.log("추천 체크");
+    }
+    // 추천 요청을 서버로 보내자
   };
   const clickunLike = (e: MouseEvent<HTMLButtonElement>) => {
-    console.log("비추천 체크");
+    if (!userInfo.isAlreadyLike) {
+      selectLike(-1);
+      setIsAlreadyLike();
+      console.log("비추천 체크");
+    }
+    // 비추천 요청을 서버로 보내자
   };
   return (
     <ItemContentComp
       id={item.id}
-      isFold={item.isFold}
-      isWriter={item.isWriter}
-      isUser={item.isUser}
+      isLong={isLong}
+      isUnFold={isUnFold}
+      isWriter={userInfo.isWriter}
+      isAlreadyLike={userInfo.isAlreadyLike}
+      isUser={userInfo.isUser}
       title={item.title}
       writer={item.writer}
       createdAt={item.createdAt}

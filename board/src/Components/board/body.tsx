@@ -1,28 +1,31 @@
 import { FC } from "react";
-import BoardList from "./boradList/boardList";
-import { IBoardItem, IBoardItemContentExt } from "../../hooks/board/boardList";
+import BoardList from "./BoardList/BoardList";
+import { IBoardItem, IBoardItemContentExt } from "../../hooks/Board/boardList";
 
 export interface IProps {
-  setBoardItemContent(id: number, itemContent: IBoardItemContentExt): void;
-  toggleBoardItemContent(id: number): void;
   getBoardItemList(): IBoardItem[];
-  unFoldBoardItem(id: number): void;
+  setBoardItemContent(id: number, itemContent: IBoardItemContentExt): void;
+  selectLike(id: number, like: number): void;
+  deleteBoardItem(id: number): void;
+  addLook(id: number): void;
 }
 
 const Body: FC<IProps> = ({
   getBoardItemList,
   setBoardItemContent,
-  toggleBoardItemContent,
-  unFoldBoardItem,
+  selectLike,
+  deleteBoardItem,
+  addLook,
 }) => {
   return (
     <div className="py-3" id="body">
-      <div className="container max-sm:p-0 pr-4">
+      <div className="container max-sm:p-0">
         <BoardList
           getBoardItemList={getBoardItemList}
           setBoardItemContent={setBoardItemContent}
-          toggleBoardItemContent={toggleBoardItemContent}
-          unFoldBoardItem={unFoldBoardItem}
+          selectLike={selectLike}
+          deleteBoardItem={deleteBoardItem}
+          addLook={addLook}
         />
       </div>
     </div>

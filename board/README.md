@@ -1,3 +1,9 @@
+## ???
+
+e.preventDefault()를 뺴니까 제대로 동작을 한다.
+e.preventDefault()를 하면 체크박스를 체크하고 해제를 막는다.
+submit에서는 부작용을 막기 위해 e.preventDefault()를 썼다
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

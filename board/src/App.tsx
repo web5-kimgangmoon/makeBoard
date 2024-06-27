@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
-import Board from "./Containers/board/board";
+import Board from "./Containers/Board/Board";
 // import logo from './logo.svg';
 // import './App.css';
 

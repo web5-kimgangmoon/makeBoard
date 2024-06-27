@@ -1,6 +1,6 @@
 import { FC } from "react";
-import ItemHeaderComp from "../../../Components/board/boradList/itemHeader";
-import { IBoardItemHeader as IHeader } from "../../../hooks/board/boardList";
+import ItemHeaderComp from "../../../Components/Board/BoardList/ItemHeader";
+import { IBoardItemHeader as IHeader } from "../../../hooks/Board/boardList";
 
 export interface IProps {
   item: IHeader;
