@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 export interface IBoardItemBase {
   id: number;
@@ -20,11 +20,14 @@ export interface IBoardItemContentExt {
   // isUser은 userInfo 쪽에서 관리하는게 맞을 것 같습니다. 나중에 빼냅시다.
   updatedAt: string;
   content: string;
+
   // isAlreadyLike 추천 비추천 구분하지 않고 넣어주자. 서버에서 구분보단 그냥 정보를 받아오자.
 }
 export interface IBoardItemContentBoxExt {
   isOpen: boolean;
   isWritten: boolean;
+  isFold: boolean; // 전체보기가 켜있으면
+  // 게시글 내용 전체보기
 }
 
 export interface IBoardItemHeader extends IBoardItemBase {}
@@ -51,6 +54,7 @@ const useBoardList = (boardItemHeaderList: IBoardItemHeader[]) => {
       updatedAt: "",
       content: "",
       isWritten: false,
+      isFold: true,
       getBoardItemHeader: function () {
         return { ...this };
       },
@@ -76,7 +80,17 @@ const useBoardList = (boardItemHeaderList: IBoardItemHeader[]) => {
   const toggleBoardItemContent = useCallback((id: number) => {
     setBoardList((list) => {
       let idx = list.findIndex((item) => item.id === id);
-      if (idx !== -1) list[idx].isOpen = !list[idx].isOpen;
+      console.log(id, idx);
+      if (idx !== -1)
+        list[idx] = !list[idx].isFold?{ ...list[idx], isOpen:!list[idx].isOpen, isFold: true } :
+        { ...list[idx], isOpen:!list[idx].isOpen };
+      return [...list];
+    });
+  }, []);
+  const unFoldBoardItem = useCallback((id: number) => {
+    setBoardList((list) => {
+      let idx = list.findIndex((item) => item.id === id);
+      if (list[idx]) list[idx].isFold = false;
       return [...list];
     });
   }, []);
@@ -86,10 +100,12 @@ const useBoardList = (boardItemHeaderList: IBoardItemHeader[]) => {
       return [...list];
     });
   }, []);
+  useEffect(()=>{console.log("바뀜");},[boardList])
   return {
     getBoardItemList,
     setBoardItemContent,
     toggleBoardItemContent,
+    unFoldBoardItem,
     deleteBoardItem,
   };
 };

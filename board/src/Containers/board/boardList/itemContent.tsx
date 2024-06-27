@@ -4,9 +4,14 @@ import { IBoardItemContent as IContent } from "../../../hooks/board/boardList";
 
 export interface IProps {
   item: IContent;
+  unFoldBoardItem: () => void;
 }
 
-const ItemContent: FC<IProps> = ({ item }) => {
+const ItemContent: FC<IProps> = ({ item, unFoldBoardItem }) => {
+  const clickUnfold = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    unFoldBoardItem();
+  };
   const clickDeleteItem = (e: MouseEvent<HTMLButtonElement>) => {
     console.log("삭제 체크");
   };
@@ -25,6 +30,7 @@ const ItemContent: FC<IProps> = ({ item }) => {
   return (
     <ItemContentComp
       id={item.id}
+      isFold={item.isFold}
       isWriter={item.isWriter}
       isUser={item.isUser}
       title={item.title}
@@ -40,6 +46,7 @@ const ItemContent: FC<IProps> = ({ item }) => {
       openCommentWriteModal={openCommentWriteModal}
       clickLike={clickLike}
       clickUnLike={clickunLike}
+      clickUnFold={clickUnfold}
     />
   );
 };

@@ -9,12 +9,14 @@ export interface IProps {
   setBoardItemContent(id: number, itemContent: IBoardItemContentExt): void;
   toggleBoardItemContent(id: number): void;
   getBoardItemList(): IBoardItem[];
+  unFoldBoardItem(id: number): void;
 }
 
 const BoardList: FC<IProps> = ({
   getBoardItemList,
   setBoardItemContent,
   toggleBoardItemContent,
+  unFoldBoardItem,
 }) => {
   return (
     <ol className="py-1 bg-blue-400 h-full rounded-sm flex flex-col gap-y-1">
@@ -46,6 +48,7 @@ const BoardList: FC<IProps> = ({
             setBoardItemContent(item.id, itemContent)
           }
           toggleBoardItemContent={() => toggleBoardItemContent(item.id)}
+          unFoldBoardItem={() => unFoldBoardItem(item.id)}
         />
       ))}
     </ol>

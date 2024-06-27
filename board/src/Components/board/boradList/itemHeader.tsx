@@ -25,21 +25,35 @@ const ItemHeader: FC<IProps> = ({
           </div>
         </div>
       </div>
-      <div className="flex">
-        <div className="p-2 min-w-28 border-r border-gray-400 truncate truncate max-sm:grow">
+      <div className="flex  max-sm:flex-col">
+        <div className="p-2 min-w-28 border-r border-gray-400 truncate truncate max-sm:grow max-sm:border-r-0 font-semibold">
+          <span className="hidden font-normal max-sm:inline">작성일자 </span>
           {createdAt}
         </div>
-        <div className="p-2 min-w-16 border-r border-gray-400 font-semibold truncate truncate max-sm:grow">
-          <span className="hidden font-normal max-sm:inline">추천수 </span>
-          {likes + unlikes}
+        <div className="hidden border-t border-gray-300 max-sm:flex">
+          <div className="px-2 pt-2 min-w-16 border-r border-gray-400 font-semibold truncate truncate max-sm:grow max-sm:border-r-0">
+            <span className="hidden font-normal max-sm:inline">추천수</span>
+          </div>
+          <div className="px-2 pt-2 min-w-16 border-r border-gray-400 font-semibold truncate truncate max-sm:grow max-sm:border-r-0">
+            <span className="hidden font-normal max-sm:inline">댓글수</span>
+          </div>
+          <div className="px-2 pt-2 min-w-16 font-semibold truncate max-sm:grow max-sm:border-r-0">
+            <span className="hidden font-normal max-sm:inline">조회수</span>
+          </div>
         </div>
-        <div className="p-2 min-w-16 border-r border-gray-400 font-semibold truncate truncate max-sm:grow">
-          <span className="hidden font-normal max-sm:inline">댓글수 </span>
-          {commentCnt}
-        </div>
-        <div className="p-2 min-w-16 font-semibold  truncate max-sm:grow">
-          <span className="hidden font-normal max-sm:inline">조회수 </span>
-          {looks}
+        <div className="flex border-gray-300 max-sm:border-b">
+          <div className="px-2 py-2 min-w-16 border-r border-gray-400 font-semibold truncate truncate max-sm:grow max-sm:border-r-0 max-sm:pt-0">
+            {/* <span className="hidden font-normal max-sm:inline">추천 </span> */}
+            {likes + unlikes}
+          </div>
+          <div className="px-2 py-2 min-w-16 border-r border-gray-400 font-semibold truncate truncate max-sm:grow max-sm:border-r-0 max-sm:pt-0">
+            {/* <span className="hidden font-normal max-sm:inline">댓글 </span> */}
+            {commentCnt}
+          </div>
+          <div className="px-2 py-2 min-w-16 font-semibold truncate max-sm:grow max-sm:border-r-0 max-sm:pt-0">
+            {/* <span className="hidden font-normal max-sm:inline">조회 </span> */}
+            {looks}
+          </div>
         </div>
       </div>
     </div>

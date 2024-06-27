@@ -7,6 +7,9 @@ module.exports = {
         center: true,
         padding: "3rem",
       },
+      maxHeight: {
+        '120': "30rem",
+      },
     },
   },
   plugins: [],

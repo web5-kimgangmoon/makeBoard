@@ -8,23 +8,23 @@ export interface IProps {
   getBoardItemList(): IBoardItem[];
   setBoardItemContent(id: number, itemContent: IBoardItemContentExt): void;
   toggleBoardItemContent(id: number): void;
+  unFoldBoardItem(id: number): void;
 }
 
 const Board: FC<IProps> = ({
   getBoardItemList,
   setBoardItemContent,
   toggleBoardItemContent,
+  unFoldBoardItem,
 }) => {
   return (
-    <div
-      className="bg-gray-200 min-h-[100vh] font-sans text-blue-700 pr-4"
-      id="board"
-    >
+    <div className="bg-gray-200 min-h-[100vh] font-sans text-blue-700">
       <Header />
       <Body
         getBoardItemList={getBoardItemList}
         setBoardItemContent={setBoardItemContent}
         toggleBoardItemContent={toggleBoardItemContent}
+        unFoldBoardItem={unFoldBoardItem}
       />
       <footer className="" id="footer"></footer>
     </div>

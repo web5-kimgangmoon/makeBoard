@@ -10,17 +10,20 @@ export interface IProps {
   boardItem: IBoardItem;
   setBoardItemContent(itemContent: IBoardItemContentExt): void;
   toggleBoardItemContent(): void;
+  unFoldBoardItem(): void;
 }
 
 const BoardItem: FC<IProps> = ({
   boardItem,
   setBoardItemContent,
   toggleBoardItemContent,
+  unFoldBoardItem,
 }) => {
   return (
     <li className="bg-blue-300 shadow-sm overflow-y-hidden relative">
       <ItemHeader item={boardItem.getBoardItemHeader()} />
       <ItemContentBox
+        unFoldBoardItem={unFoldBoardItem}
         boardItemContent={boardItem.getBoardItemContent()}
         setBoardItemContent={setBoardItemContent}
         toggleBoardItemContent={toggleBoardItemContent}

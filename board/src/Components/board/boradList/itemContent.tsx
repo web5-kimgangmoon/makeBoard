@@ -6,6 +6,7 @@ import {
 
 export interface IProps extends IBase {}
 export interface IProps extends IContentExt {
+  isFold: boolean;
   clickDeleteItem(e: MouseEvent<HTMLButtonElement>): void;
   //   checkScroll(): void;
   //   getBoardContent():void; 이것들을 포함하고 있어야한다.
@@ -13,9 +14,11 @@ export interface IProps extends IContentExt {
   openCommentWriteModal(e: MouseEvent<HTMLButtonElement>): void;
   clickLike(e: MouseEvent<HTMLButtonElement>): void;
   clickUnLike(e: MouseEvent<HTMLButtonElement>): void;
+  clickUnFold(e: MouseEvent<HTMLButtonElement>): void;
 }
 
 const ItemContent: FC<IProps> = ({
+  isFold,
   isWriter,
   isUser,
   title,
@@ -31,6 +34,7 @@ const ItemContent: FC<IProps> = ({
   openCommentWriteModal,
   clickLike,
   clickUnLike,
+  clickUnFold,
 }) => {
   return (
     <div className="relative z-10">
@@ -65,7 +69,7 @@ hover:bg-red-300 focus:bg-red-500 focus:text-red-800 transition-[background]"
             <strong>작성자 : </strong>
             {writer}
           </div>
-          <div className="p-1 flex justify-between whitespace-pre-wrap break-all border-b-4 border-gray-300 border-double">
+          <div className="p-1 flex justify-between whitespace-pre-wrap break-all border-b-4 border-gray-300 border-double max-sm:flex-col">
             <div>
               <strong>작성일자 : </strong>
               {createdAt}
@@ -79,8 +83,22 @@ hover:bg-red-300 focus:bg-red-500 focus:text-red-800 transition-[background]"
               {looks}
             </div>
           </div>
-          <div className="min-h-[25rem] border-b-4 border-gray-300 border-double">
-            {content}
+          <div className="max-h-80 border-b-4 border-gray-300 border-double whitespace-pre-wrap overflow-hidden relative">
+            <span id="temporary-content">{content}</span>
+            {isFold ? (
+              <div className="absolute w-full top-72 left-0 text-center bg-gray-200 border-t-2 border-gray-300">
+                <button
+                  type="button"
+                  className="w-full h-8"
+                  onClick={clickUnFold}
+                >
+                  전체보기
+                </button>
+              </div>
+            ) : (
+              ""
+            )}
+            {/* height를 구하는 함수가 필요, height에 따라서 해당 요소를 드러내주자. */}
           </div>
           <div className="p-1 bg-blue-100 flex justify-center gap-y-2 flex-col">
             <div className="flex justify-center gap-x-2">
