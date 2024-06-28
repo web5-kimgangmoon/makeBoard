@@ -16,7 +16,7 @@ export interface IProps extends IUserInfo {
   clickUnFold(e: MouseEvent<HTMLButtonElement>): void;
 }
 
-const ItemContent: FC<IProps> = ({
+const ItemContent = ({
   id,
   isLong,
   isUnFold,
@@ -37,7 +37,7 @@ const ItemContent: FC<IProps> = ({
   clickLike,
   clickUnLike,
   clickUnFold,
-}) => {
+}: IProps): JSX.Element => {
   return (
     <div className="relative z-10">
       <div className="p-2">
