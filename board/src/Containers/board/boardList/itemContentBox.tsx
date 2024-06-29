@@ -1,5 +1,5 @@
 import { FC, ChangeEvent, MouseEvent } from "react";
-import ItemContentBoxComp from "../../../Components/Board/BoardList/ItemContentBox";
+import ItemContentBoxComp from "../../../Components/Board/BoardList/ItemContent/ItemContentBox";
 import {
   IBoardItemContent,
   IBoardItemContentExt,

@@ -1,5 +1,5 @@
 import { FC, MouseEvent } from "react";
-import ItemContentComp from "../../../Components/Board/BoardList/ItemContent";
+import ItemContentComp from "../../../Components/Board/BoardList/ItemContent/ItemContent";
 import { IBoardItemContent as IContent } from "../../../hooks/Board/boardList";
 import useBoardItemUserInfo from "../../../hooks/Board/boardItemUserInfo";
 import getUserInfo from "../../../getInfo/getBoardItemUserInfo";

@@ -1,18 +1,14 @@
-import { FC } from "react";
+import Button from "../Button/Button";
 
 export interface IProps {}
 
-const Header: FC<IProps> = ({}) => {
+const Header = ({}: IProps): JSX.Element => {
   return (
     <div className="sticky bg-orange-400 top-0 z-20" id="header">
       <div className="container p-2 bg-orange-300 h-full rounded-2xl flex justify-end">
         <div className="flex">
-          <button //나중에 link로 수정할 부분
-            className="px-5 py-3 bg-yellow-200 rounded-md shadow-md font-semibold text-yellow-700
-        hover:bg-yellow-300 focus:bg-yellow-500 focus:text-yellow-800 transition-[background]"
-          >
-            로그인
-          </button>
+          //나중에 Link를 추가하자
+          <Button px={5} py={3} color="yellow" content="로그인"></Button>
         </div>
       </div>
     </div>

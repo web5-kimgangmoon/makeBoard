@@ -1,7 +1,7 @@
 import { FC, ChangeEvent, MouseEvent } from "react";
-import ItemContent from "../../../Containers/Board/BoardList/ItemContent";
-import { IBoardItemContent as IContent } from "../../../hooks/Board/boardList";
-import { IBoardItemContentBox } from "../../../hooks/Board/itemContentBox";
+import ItemContent from "../../../../Containers/Board/BoardList/ItemContent";
+import { IBoardItemContent as IContent } from "../../../../hooks/Board/boardList";
+import { IBoardItemContentBox } from "../../../../hooks/Board/itemContentBox";
 
 export interface IProps extends IBoardItemContentBox {
   boardItemContent: IContent;
@@ -29,9 +29,9 @@ const ItemContentBox: FC<IProps> = ({
 }) => {
   return (
     <div
-      className={`max-h-0 transition-[max-height] ease-in duration-300 ${
+      className={`max-h-0 transition-[max-height] ease-in duration-300 has-[:checked]:ease-out has-[:checked]:duration-500 ${
         isUnFold ? "has-[:checked]:max-h-max" : "has-[:checked]:max-h-160"
-      } has-[:checked]:ease-out has-[:checked]:duration-500`}
+      }`}
       onClick={!isAlreadyLook ? clickOneMove : undefined}
     >
       <input
