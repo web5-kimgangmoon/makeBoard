@@ -8,7 +8,7 @@ const Header = ({}: IProps): JSX.Element => {
       <div className="container p-2 bg-orange-300 h-full rounded-2xl flex justify-end">
         <div className="flex">
           //나중에 Link를 추가하자
-          <Button px={5} py={3} color="yellow" content="로그인"></Button>
+          <Button px={0} py={0} color={0} content="로그인"></Button>
         </div>
       </div>
     </div>

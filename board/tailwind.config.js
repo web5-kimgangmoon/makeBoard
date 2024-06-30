@@ -8,8 +8,8 @@ module.exports = {
         padding: "3rem",
       },
       maxHeight: {
-        "160": "40rem",
-        "boardContentHeight":"300px"
+        160: "40rem",
+        boardContentHeight: "300px",
       },
     },
   },

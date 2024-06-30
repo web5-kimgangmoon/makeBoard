@@ -2,7 +2,10 @@ import { FC } from "react";
 import { Link } from "react-router-dom";
 import Header from "./Header";
 import Body from "./Body";
-import { IBoardItem, IBoardItemContentExt } from "../../hooks/Board/boardList";
+import {
+  IBoardItem,
+  IBoardItemContentExt,
+} from "../../hooks/BoardList/boardList";
 
 export interface IProps {
   getBoardItemList(): IBoardItem[];

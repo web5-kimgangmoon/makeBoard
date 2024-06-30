@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import BoardComp from "../../Components/Board/Board";
-import useBoardList from "../../hooks/Board/boardList";
+import useBoardList from "../../hooks/BoardList/boardList";
 import getBoardItemHeader from "../../getInfo/getBoardItemHeader";
 
 export interface IProps {}

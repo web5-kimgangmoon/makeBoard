@@ -1,6 +1,9 @@
 import { FC } from "react";
-import BoardList from "./BoardList/BoardList";
-import { IBoardItem, IBoardItemContentExt } from "../../hooks/Board/boardList";
+import BoardList from "../BoardList/BoardList";
+import {
+  IBoardItem,
+  IBoardItemContentExt,
+} from "../../hooks/BoardList/boardList";
 
 export interface IProps {
   getBoardItemList(): IBoardItem[];
