@@ -1,7 +1,7 @@
 import { FC, MouseEvent } from "react";
 import ItemContentComp from "../../../Components/Board/BoardList/ItemContent";
-import { IBoardItemContent as IContent } from "../../../hooks/Board/boardList";
-import useBoardItemUserInfo from "../../../hooks/Board/boardItemUserInfo";
+import { IBoardItemContent as IContent } from "../../../hooks/Board/BoardList";
+import useBoardItemUserInfo from "../../../hooks/Board/BoardItemUserInfo";
 import getUserInfo from "../../../getInfo/getBoardItemUserInfo";
 
 export interface IProps {

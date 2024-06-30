@@ -3,7 +3,7 @@ import BoardItem from "./BoardItem";
 import {
   IBoardItem,
   IBoardItemContentExt,
-} from "../../../hooks/Board/boardList";
+} from "../../../hooks/Board/BoardList";
 
 export interface IProps {
   getBoardItemList(): IBoardItem[];

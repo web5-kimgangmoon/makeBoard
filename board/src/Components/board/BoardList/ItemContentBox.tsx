@@ -1,7 +1,7 @@
 import { FC, ChangeEvent, MouseEvent } from "react";
 import ItemContent from "../../../Containers/Board/BoardList/ItemContent";
-import { IBoardItemContent as IContent } from "../../../hooks/Board/boardList";
-import { IBoardItemContentBox } from "../../../hooks/Board/itemContentBox";
+import { IBoardItemContent as IContent } from "../../../hooks/Board/BoardList";
+import { IBoardItemContentBox } from "../../../hooks/Board/ItemContentBox";
 
 export interface IProps extends IBoardItemContentBox {
   boardItemContent: IContent;
@@ -20,6 +20,7 @@ const ItemContentBox: FC<IProps> = ({
   isLong,
   isAlreadyLook,
   isWritten,
+  boxHeight,
   onMouseBoard,
   unFoldBoardItem,
   openItemContent,
@@ -27,11 +28,17 @@ const ItemContentBox: FC<IProps> = ({
   selectLike,
   deleteBoard,
 }) => {
+  console.log(boxHeight);
+  // const heightClass = `has-[:checked]:h-[${boxHeight}px]`;
   return (
     <div
-      className={`max-h-0 transition-[max-height] ease-in duration-300 ${
-        isUnFold ? "has-[:checked]:max-h-max" : "has-[:checked]:max-h-160"
-      } has-[:checked]:ease-out has-[:checked]:duration-500`}
+      className={`h-0 
+        transition-[height] 
+        ease-in 
+        duration-300 
+        has-[:checked]:ease-out 
+        has-[:checked]:duration-500`}
+      style={{ height: `${boxHeight}` }}
       onClick={!isAlreadyLook ? clickOneMove : undefined}
     >
       <input

@@ -1,4 +1,4 @@
-import { IBoardItemContentExt } from "../hooks/Board/boardList";
+import { IBoardItemContentExt } from "../hooks/Board/BoardList";
 
 const getBoardItemContent = (): IBoardItemContentExt => {
   return {
@@ -6,14 +6,19 @@ const getBoardItemContent = (): IBoardItemContentExt => {
     content: `심연의 끝
     심연의 끝
     심연의 끝
+
     심연의 끝
+        심연의 끝
+
     심연의 끝
+        심연의 끝
+
     심연의 끝
+        심연의 끝
+
     심연의 끝
-    심연의 끝
-       심연의 끝
-    심연의 끝
-    심연의 끝
+        심연의 끝
+
     심연의 끝
     심연의 끝`,
   };

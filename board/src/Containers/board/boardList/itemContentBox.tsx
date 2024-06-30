@@ -3,8 +3,8 @@ import ItemContentBoxComp from "../../../Components/Board/BoardList/ItemContentB
 import {
   IBoardItemContent,
   IBoardItemContentExt,
-} from "../../../hooks/Board/boardList";
-import useItemContentBox from "../../../hooks/Board/itemContentBox";
+} from "../../../hooks/Board/BoardList";
+import useItemContentBox from "../../../hooks/Board/ItemContentBox";
 import getBoardItemContent from "../../../getInfo/getBoardItemContent";
 
 export interface IProps {
@@ -29,6 +29,7 @@ const ItemContentBox: FC<IProps> = ({
     getItemContentBox,
     checkIsLong,
     setIsAlreadyLook,
+    setHeight,
   } = useItemContentBox();
   const itemContentBox = getItemContentBox();
   const onMouseBoard = (e: MouseEvent<HTMLInputElement>) => {
@@ -45,12 +46,22 @@ const ItemContentBox: FC<IProps> = ({
     const height = document.getElementById(
       `${boardItemContent.id}BoardItemContent`
     )?.offsetHeight;
+    const height2 = document.getElementById(
+      `${boardItemContent.id}BoardItemContentBox`
+    )?.offsetHeight;
     if (height !== undefined && height > 300) {
       checkIsLong();
     }
     addLook();
+    setHeight(height2 ? height2 : 0);
+    console.log(height2);
     setIsAlreadyLook();
   };
+  const boxHeight = itemContentBox.isUnFold
+    ? "max-content"
+    : itemContentBox.isOpen
+    ? itemContentBox.boxHeight + "px"
+    : "0";
   return (
     <ItemContentBoxComp
       boardItemContent={boardItemContent}
@@ -59,6 +70,7 @@ const ItemContentBox: FC<IProps> = ({
       isUnFold={itemContentBox.isUnFold}
       isLong={itemContentBox.isLong}
       isAlreadyLook={itemContentBox.isAlreadyLook}
+      boxHeight={boxHeight}
       onMouseBoard={onMouseBoard}
       openItemContent={openItemContent}
       unFoldBoardItem={toggleUnFoldBoardItem}

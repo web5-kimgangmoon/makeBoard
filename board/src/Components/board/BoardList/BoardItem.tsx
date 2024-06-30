@@ -4,7 +4,7 @@ import ItemContentBox from "../../../Containers/Board/BoardList/ItemContentBox";
 import {
   IBoardItem,
   IBoardItemContentExt,
-} from "../../../hooks/Board/boardList";
+} from "../../../hooks/Board/BoardList";
 
 export interface IProps {
   boardItem: IBoardItem;
