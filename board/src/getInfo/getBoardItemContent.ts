@@ -1,4 +1,4 @@
-import { IBoardItemContentExt } from "../hooks/BoardList/boardList";
+import { IBoardItemContentExt } from "../hooks/Board/boardList";
 
 const getBoardItemContent = (): IBoardItemContentExt => {
   return {

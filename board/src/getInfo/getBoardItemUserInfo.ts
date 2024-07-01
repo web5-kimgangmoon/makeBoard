@@ -1,4 +1,4 @@
-import { IBoardItemUserInfo } from "../hooks/BoardList/boardItemUserInfo";
+import { IBoardItemUserInfo } from "../hooks/Board/boardItemUserInfo";
 
 const getBoardItemUserInfo = (): IBoardItemUserInfo => {
   return {

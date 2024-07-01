@@ -7,7 +7,7 @@ interface IProps {
   isLong: boolean;
   isUnFold: boolean;
   btnContent: string;
-  clickUnFold(e: MouseEvent<HTMLButtonElement>): void;
+  onClickUnFoldButton: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
 const Content = ({
@@ -16,7 +16,7 @@ const Content = ({
   id,
   value,
   btnContent,
-  clickUnFold,
+  onClickUnFoldButton,
 }: IProps): JSX.Element => {
   const content_max = isLong && isUnFold ? "" : "max-h-boardContentHeight";
   const isStretchButton = isLong && !isUnFold ? true : false;
@@ -29,7 +29,10 @@ const Content = ({
     >
       <span id={`${id}BoardItemContent`}>{value}</span>
       {isStretchButton ? (
-        <StretchButton clickUnFold={clickUnFold} content={btnContent} />
+        <StretchButton
+          onClickUnFoldButton={onClickUnFoldButton}
+          content={btnContent}
+        />
       ) : (
         ""
       )}

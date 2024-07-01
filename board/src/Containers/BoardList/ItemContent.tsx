@@ -3,31 +3,30 @@ import { IProps as IButton } from "../../Components/Button/Button";
 import ItemContentComp from "../../Components/BoardList/ItemContent/ItemContent";
 import { IContent } from "../../Components/BoardList/BoardList";
 
-export interface IProps<T extends { id: number }> {
+export interface IProps<T extends {}> {
+  id: number;
+  valueObj: T;
   content: IContent;
   isUnFold: boolean;
   isLong: boolean;
-  unFoldBoardItem(): void;
-  valueObj: T;
+  onClickUnFoldButton: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
-const ItemContent = <T extends { id: number }>({
+const ItemContent = <T extends {}>({
+  id,
+  valueObj,
   content,
   isUnFold,
   isLong,
-  unFoldBoardItem,
-  valueObj,
+  onClickUnFoldButton,
 }: IProps<T>): JSX.Element => {
-  const clickUnfold = (e: MouseEvent<HTMLButtonElement>) => {
-    unFoldBoardItem();
-  };
   const contentInfo = {
     isLong: isLong,
     isUnFold: isUnFold,
     value: `${valueObj[content.content.key as keyof T]}`,
-    id: valueObj.id,
+    id: id,
     btnContent: content.content.btnContent,
-    clickUnFold: clickUnfold,
+    onClickUnFoldButton: onClickUnFoldButton,
   };
   const textLineListInfo = [];
   for (let item of content.textLineList) {
@@ -51,7 +50,7 @@ const ItemContent = <T extends { id: number }>({
         content: contentInfo,
         textLineList: textLineListInfo,
       }}
-      id={valueObj.id}
+      id={id}
     />
   );
 };

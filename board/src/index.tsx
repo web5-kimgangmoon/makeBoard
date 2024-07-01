@@ -4,6 +4,7 @@ import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, BrowserRouter, Outlet } from "react-router-dom";
+import BoardListProvider from "./Context/BoardList/BoardListProvider";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -11,7 +12,9 @@ const root = ReactDOM.createRoot(
 root.render(
   // <React.StrictMode>
   <BrowserRouter>
-    <App />
+    <BoardListProvider>
+      <App />
+    </BoardListProvider>
   </BrowserRouter>
   // </React.StrictMode>
 );

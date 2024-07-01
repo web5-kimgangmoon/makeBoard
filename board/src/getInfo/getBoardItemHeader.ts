@@ -1,4 +1,4 @@
-import { IBoardItemHeader } from "../hooks/BoardList/boardList";
+import { IBoardItemHeader } from "../hooks/Board/boardList";
 
 const getBoardItemHeader = (): IBoardItemHeader[] => {
   return [

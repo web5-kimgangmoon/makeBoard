@@ -20,7 +20,7 @@ export interface IContent {
     btnContent: string;
     isUnFold: boolean;
     isLong: boolean;
-    clickUnFold(e: MouseEvent<HTMLButtonElement>): void;
+    onClickUnFoldButton: (e: MouseEvent<HTMLButtonElement>) => void;
   };
   bottomBtnLineList: Array<IButtonEx[]>;
 }
@@ -43,7 +43,7 @@ const ItemContent = ({ id, content }: IProps): JSX.Element => {
             value={content.content.value}
             id={content.content.id}
             btnContent={content.content.btnContent}
-            clickUnFold={content.content.clickUnFold}
+            onClickUnFoldButton={content.content.onClickUnFoldButton}
           />
           <BottomLineList BtnLineList={content.bottomBtnLineList} />
         </div>

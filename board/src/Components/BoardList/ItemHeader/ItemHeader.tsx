@@ -5,7 +5,7 @@ export type topTy = Array<[string, string]>;
 export interface IBottomItem {
   title: string;
   value: string;
-  oneLine: boolean;
+  oneLine?: boolean;
 }
 export type bottomListTy = Array<IBottomItem>;
 export interface IProps {

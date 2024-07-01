@@ -4,7 +4,7 @@ import TwoLineList from "./TwoLineList";
 export interface IBottomItem {
   title: string;
   value: string;
-  oneLine: boolean;
+  oneLine?: boolean;
 }
 export interface IBottomList {
   list: Array<IBottomItem>;
@@ -15,7 +15,6 @@ export interface IItem {
 }
 
 export const BottomList = ({ list }: IBottomList): JSX.Element => {
-  let count = 0;
   const oneLineList: IItem[] = [];
   const twoLineList: IItem[][] = [];
   let twoLineItem = [];
@@ -24,12 +23,10 @@ export const BottomList = ({ list }: IBottomList): JSX.Element => {
       oneLineList.push({ title: item.title, value: item.value });
     else {
       twoLineItem.push({ title: item.title, value: item.value });
-      count++;
     }
-    if (count == 3) {
+    if (twoLineItem.length == 3) {
       twoLineList.push(twoLineItem);
       twoLineItem = [];
-      count = 0;
     }
   }
   if (twoLineItem.length != 0) {

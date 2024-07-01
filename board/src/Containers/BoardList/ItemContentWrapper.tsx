@@ -3,59 +3,50 @@ import ItemContentWrapperComp from "../../Components/BoardList/ItemContent/ItemC
 import useItemContentWrapper from "../../hooks/BoardList/itemContentWrapper";
 import { IContent } from "../../Components/BoardList/BoardList";
 
-export interface IProps<T extends { id: number }> {
-  headerOneClickEvent?: () => void;
-  headerClickEvent?: () => void;
-  onMouseBoard?: (e: MouseEvent<HTMLInputElement>) => void;
+export interface IProps<T extends {}> {
+  id: number;
   content: IContent;
   valueObj: T;
+  clickBoard?: (e: ChangeEvent<HTMLInputElement>) => void;
+  oneClickBoard?: (e: MouseEvent<HTMLDivElement>) => void;
+  onMouseBoard?: (e: MouseEvent<HTMLInputElement>) => void;
 }
-// //   checkScroll(): void; 포함되야한다. 추가해주자.
-const ItemContentWrapper = <T extends { id: number }>({
-  headerOneClickEvent,
-  headerClickEvent,
-  onMouseBoard,
+const ItemContentWrapper = <T extends {}>({
+  id,
   content,
   valueObj,
+  clickBoard = () => {},
+  oneClickBoard = () => {},
+  onMouseBoard,
 }: IProps<T>) => {
-  const {
-    // writeBoardItemContent,
-    toggleBoardItemContent,
-    toggleUnFoldBoardItem,
-    getItemContentWrapper,
-    checkIsLong,
-    setIsAlreadyLook,
-  } = useItemContentWrapper();
-  const itemContentWrapper = getItemContentWrapper();
-  const openItemContent = (e: ChangeEvent<HTMLInputElement>) => {
-    if (itemContentWrapper.isUnFold) toggleUnFoldBoardItem();
-    if (headerClickEvent) headerClickEvent();
-    toggleBoardItemContent();
+  const { openBoard, longBoardCheck, unFoldBoard, state, currentHeight } =
+    useItemContentWrapper(id);
+  const onClickBoard = (e: ChangeEvent<HTMLInputElement>) => {
+    clickBoard(e);
+    openBoard();
   };
-  const clickOneMove = itemContentWrapper.isAlreadyLook
+  const onClickOnceBoard = !state.isLooked
     ? (e: MouseEvent<HTMLDivElement>) => {
-        const height = document.getElementById(
-          `${valueObj.id}BoardItemContent`
-        )?.offsetHeight;
-        if (height !== undefined && height > 300) {
-          checkIsLong();
-        }
-        if (headerOneClickEvent) headerOneClickEvent();
-        setIsAlreadyLook();
+        oneClickBoard(e);
+        longBoardCheck();
       }
     : undefined;
+  const onClickUnFoldButton = (e: MouseEvent<HTMLButtonElement>) => {
+    unFoldBoard();
+  };
   return (
     <ItemContentWrapperComp<T>
-      content={content}
+      id={id}
       valueObj={valueObj}
-      isOpen={itemContentWrapper.isOpen}
-      isUnFold={itemContentWrapper.isUnFold}
-      isLong={itemContentWrapper.isLong}
+      content={content}
+      isOpen={state.isOpen}
+      isUnFold={state.isUnFold}
+      isLong={state.isLong}
+      currentHeight={currentHeight()}
+      onClickBoard={onClickBoard}
+      onClickOnceBoard={onClickOnceBoard}
+      onClickUnFoldButton={onClickUnFoldButton}
       onMouseBoard={onMouseBoard}
-      openItemContent={openItemContent}
-      unFoldBoardItem={toggleUnFoldBoardItem}
-      clickOneMove={clickOneMove}
-      selectLike={selectLike}
     />
   );
 };

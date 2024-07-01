@@ -1,16 +1,6 @@
 import ItemHeaderComp from "../../Components/BoardList/ItemHeader/ItemHeader";
+import { IHeader } from "../../Components/BoardList/BoardList";
 
-export type topTy = Array<[string, string]>;
-export interface IBottomItem {
-  title: string;
-  key: string;
-  oneLine: boolean;
-}
-export type bottomListTy = Array<IBottomItem>;
-export interface IHeader {
-  top: topTy;
-  bottom: bottomListTy;
-}
 export interface IProps<T> {
   header: IHeader;
   valueObj: T;
@@ -21,7 +11,7 @@ const ItemHeader = <T extends {}>({
   valueObj,
 }: IProps<T>): JSX.Element => {
   const topInfo: Array<[string, string]> = [];
-  const bottomInfo: { title: string; value: string; oneLine: boolean }[] = [];
+  const bottomInfo: { title: string; value: string; oneLine?: boolean }[] = [];
   for (let item of header.top) {
     topInfo.push([
       `${valueObj[item[0] as keyof T]}`,
